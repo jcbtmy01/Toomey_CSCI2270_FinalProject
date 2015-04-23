@@ -1,14 +1,14 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 #include <string>
+#include "holderStruct.h"
+#define MAX_LEN 10
 
-struct {
+struct hashNode{
     public:
-        std::string title;
         int key;
+		int data;
         int value;
-        Movie *next;
-        Movie *prev;
 };
 
 class HashTable
@@ -16,11 +16,13 @@ class HashTable
     public:
         HashTable();
         ~HashTable();
-        void Insert(std::string title, int year);
-        int Search(std::string title);
+        void Insert(int key, int value);
+		struct dataHolder* getData();
+        int Search(int key);
+		double searchTime;
     protected:
     private:
-        Movie **table, **top;
+        hashNode **table, **top;
 };
 
 #endif // HASHTABLE_H

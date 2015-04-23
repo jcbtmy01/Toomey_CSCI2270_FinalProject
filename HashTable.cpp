@@ -1,55 +1,58 @@
 #include "HashTable.h"
+#include <ctime>
+#define MAX_LEN 10
 
 HashTable::HashTable()
 {
-    //ctor
+	searchTime = 99999999;
+    table = new hashNode*[MAX_LEN];
+	top = new hashNode*[MAX_LEN];
+	for (int i = 0; i < MAX_LEN; i++)
+	{
+		table[i] = NULL;
+		top[i] = NULL;
+	}
 }
 
-int returnHash(string title)
+int returnHash(int key)
 {
-    return 1;
-    int sum=0,index=0;
-    for(string::size_type i=0; i < title.length(); i++)
-    {
-        sum += title[i];
-    }
-    index = sum % MAX_LEN;
-    return index;
+    return key % MAX_LEN;
 }
 
-int HashTable::Search(string title)
+int HashTable::Search(int key)
 {
-    int h = returnHash(title);
+    int h = returnHash(key);
     bool flag = false;
-    Movie* entry = table[h];
+	
+	clock_t  begin = clock();
+	
+    hashNode* entry = table[h];
     if(entry != NULL)
     {
         while (entry != NULL)
         {
-            if (entry->title == title)
+            if (entry->key == key)
             {
                 flag = true;
-            }
-            if(flag)
-            {
-                cout << entry->year << "\n" << endl;
+				break;
             }
             entry = entry->next;
         }
     }
-    if (!flag)
-        cout << "Movie not found." << endl;
+    clock_t end = clock();
+	double timeElapsed = double(end-begin)/CLOCKS_PER_SEC;
+	searchTime = timeElapsed;
 }
 
-void HashTable::insertMovie(string title, int year)
+void HashTable::Insert(int key, int value)
 {
-    int h = returnHash(title);
-    Movie *entry = table[h];
+    int h = returnHash(key);
+    hashNode *entry = table[h];
     if (entry == NULL)
     {
-        entry = new Movie;
-        entry->title = title;
-        entry->year = year;
+        entry = new hashNode;
+        entry->data = value;
+        entry->key = key;
         entry->next = NULL;
         entry->prev = NULL;
         table[h] = entry;
@@ -59,13 +62,28 @@ void HashTable::insertMovie(string title, int year)
     {
         while(entry != NULL)
             entry = entry->next;
-        entry = new Movie;
-        entry->title = title;
-        entry->year = year;
+        entry = new hashNode;
+        entry->data = value;
+        entry->key = key;
         entry->next = NULL;
         entry->prev = top[h];
         top[h]->next = entry;
         top[h] = entry;
+    }
+}
+
+struct dataHolder* HashTable::getData()
+{
+    if(searchTime == 99999999)
+    {
+        return NULL;
+    }
+    else
+    {
+        dataHolder* point = new dataHolder;
+        point->searchType = "Hash Table";
+        point->timeE = searchTime;
+        return point;
     }
 }
 
