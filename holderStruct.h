@@ -5,7 +5,7 @@
 #include <iostream>
 struct dataHolder{
 
-    string searchType;
+    std::string searchType;
     double timeE;
 
 };

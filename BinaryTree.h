@@ -12,7 +12,9 @@ public:
     BST();
     void addToTree(int info);
     void searchTree(int info2);
-    dataHolder* getData();
+    struct dataHolder* getData();
+	void find(int info3);
+	void searchNode(TreeNode* node, int info4);
     void deleteTree();
     virtual ~BST();
 
