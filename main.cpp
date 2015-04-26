@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
 {
 	bool quit = false;
 	organizer* allStructures = new organizer;
-	
+
 	int user_input;
 
 	while (!quit)
@@ -26,20 +26,22 @@ int main(int argc, char* argv[])
 
 		cin.clear();
 		cin.ignore(10000, '\n');
-		
+
 		switch (user_input)
 		{
 			case 1:
-				cout << "/n/t------Loading Sample.txt------- /n" << endl;
+				cout << "\n" << "------Loading Sample.txt------- " << "\n" << endl;
 				loadOrganizer(allStructures, "Sample.txt");
 				break;
 
 			case 2:
+                {
 				string theirFile;
 				cout << "Enter file name:" << endl;
 				cin >> theirFile;
 				loadOrganizer(allStructures, theirFile);
 				break;
+				}
 
 			case 3:
 			{
@@ -47,14 +49,14 @@ int main(int argc, char* argv[])
 				cout << "Enter a search value:" << endl;
 				cin >> searchValue;
 				allStructures->callSearch(searchValue);
-				allStructures->getSearches;
+				allStructures->getSearches();
 				allStructures->sort();
 
 				vector<dataHolder*>* returnedSearches = allStructures->getSorted();
 
-				for (int i = 0; i < returnedSearches.size(); i++)
+				for (int i = 0; i < returnedSearches->size(); i++)
 				{
-					cout << "/n/t" << returnedSearches[i]->searchType << " ----- Search Time: " << returnedSearches[i]->timeE << "/n" << endl;
+					cout << "\n" << returnedSearches->at(i)->searchType << " ----- Search Time: " << returnedSearches->at(i)->timeE * 1000 << " sec" <<"\n" << endl;
 
 				}
 				break;
@@ -63,16 +65,16 @@ int main(int argc, char* argv[])
 				int enterValue;
 				cout << "Enter an Integer: " << endl;
 				cin >> enterValue;
-				allStructues->addAll(enterValue);
+				allStructures->addAll(enterValue);
 
-				cout << entervalue << " has been added." << endl;
+				cout << enterValue << " has been added." << endl;
 				break;
 			case 5:
-				
+
 				cout << "Goodbye!" << endl;
 				quit = true;
 				break;
-			
+
 
 
 		}

@@ -1,9 +1,16 @@
 #ifndef BINARYTREE_H
-#defin BINARYTREE_H
+#define BINARYTREE_H
 
 #include <iostream>
 #include "holderStruct.h"
 
+struct TreeNode{
+
+        int data;
+        TreeNode* leftChild;
+        TreeNode* rightChild;
+
+    };
 
 class BST{
 
@@ -12,23 +19,17 @@ public:
     BST();
     void addToTree(int info);
     void searchTree(int info2);
-    struct dataHolder* getData();
-	void find(int info3);
+    dataHolder* getData();
+	void ft(int info3);
 	void searchNode(TreeNode* node, int info4);
     void deleteTree();
-    virtual ~BST();
+    ~BST();
 
 
 
 private:
     void deleteAll(TreeNode* node);
-    struct TreeNode{
 
-        int data;
-        TreeNode* leftChild;
-        TreeNode* rightChild;
-
-    };
     TreeNode* root;
     double searchTime;
 };

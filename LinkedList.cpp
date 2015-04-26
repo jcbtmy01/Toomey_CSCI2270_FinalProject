@@ -11,20 +11,7 @@ LinkedList::LinkedList()
     searchTime = 99999999;
 }
 
-/*
-Prototype:
-void LinkedList::addNode(int)
 
-Description:
-The method adds the integer as a node in the linked list.
-
-Example:
-LinkedList n;
-n.addNode(5);
-
-Pre Condition: If the list is empty it is set to NULL, and must inputting an integer.
-Post Condition: Node will be added into the linked list on the end.
-*/
 void LinkedList::addNode(int info)
 {
 
@@ -34,7 +21,7 @@ void LinkedList::addNode(int info)
     if(head == NULL)
     {
         head = newNode;
-        return
+        return;
     }
     else{
 
@@ -54,20 +41,6 @@ void LinkedList::addNode(int info)
 
 }
 
-/*
-Prototype:
-void LinkedList::traverse(int)
-
-Description:
-This function traverses through the linked list until it finds the input.
-
-Example:
-LinkedList n;
-n.traverse(5);
-
-Pre Condition: Must have a valid linked list and a searchTime variable.
-Post Condition: Searches the list and times how long it takes.
-*/
 void LinkedList::traverse(int info2)
 {
     Node* temp = head;
@@ -91,19 +64,7 @@ void LinkedList::traverse(int info2)
     searchTime = timeElapsed;
 }
 
-/*
-Prototype:
-void LinkedList::deleteAllNodes()
 
-Description:
-The method deletes all of the Nodes in the linked list.
-Example:
-LinkedList l;
-l.deleteAllNodes();
-
-Pre Condition: Linked list must have at least one valid node.
-Post Condition: The list will be deleted and the memory will be cleared.
-*/
 void LinkedList::deleteAllNodes()
 {
     Node* temp = head;
@@ -121,20 +82,7 @@ void LinkedList::deleteAllNodes()
     }
 }
 
-/*
-Prototype:
-struct dataHolder* LinkedList::getData()
-
-Description:
-The method stores the time it takes to search the tree into the GetData function.
-
-Example:
-struct dataHolder* LinkedList::getData();
-
-Pre Condition: List must have already been searched and have a search time stored.
-Post Condition: Stores the search time so it can be compared against other data structures.
-*/
-struct dataHolder* LinkedList::getData()
+dataHolder* LinkedList::getData()
 {
     if(searchTime == 99999999)
     {
@@ -149,7 +97,7 @@ struct dataHolder* LinkedList::getData()
     }
 }
 
-virtual LinkedList::~LinkedList()
+LinkedList::~LinkedList()
 {
     deleteAllNodes();
 }

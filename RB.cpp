@@ -19,28 +19,14 @@ RB::RB()
 }
 
 
-virtual RB::~RB()
+RB::~RB()
 {
 	if (root != nil)
 		DeleteAll(root);
 	delete nil;
 }
 
-/*
-Prototype:
-void DeleteAll(RBNode*)
-
-Description:
-Deletes all of the nodes in the tree.
-
-Example:
-RBNode* n;
-void DeleteAll(n);
-
-Pre Condition: Must have a valid node with valid children
-Post Condition: Node and children will be deleted from tree and the memory will be released.
-*/
-void DeleteAll(RBNode* node)
+void RB::DeleteAll(RBNode* node)
 {
 
 	if (node->leftChild != nil)
@@ -50,20 +36,6 @@ void DeleteAll(RBNode* node)
 	delete node;
 }
 
-/*
-Prototype:
-void RB::addNode(int)
-
-Description:
-The method adds a node into the RBTree
-
-Example:
-RB r;
-r.addNode(5);
-
-Pre Condition: Must be a valid integer and the tree's empty nodes will be set to NULL.
-Post Condition: The integer will be added as a new node to the tree.
-*/
 void RB::addNode(int info)
 {
 
@@ -101,7 +73,7 @@ void RB::addNode(int info)
 
 
 		if (newNode->data < y->data)
-			y->lefChild = newNode;
+			y->leftChild = newNode;
 		else
 			y->rightChild = newNode;
 
@@ -113,21 +85,7 @@ void RB::addNode(int info)
 
 }
 
-/*
-Prototype:
-void RB::rbAddFixup(RBNode* node)
-
-Description:
-This function will fix the Red Black tree after a node has been added, to ensure it is still a valid tree.
-
-Example:
-RB r;
-r.rbAddFixup(node);
-
-Pre Condition: Must be a RB tree and a valid node to fix.
-Post Condition: Tree will be fixed and be a valid RB tree again.
-*/
-void RB::rbAddFixup(RBNode* node)
+void RB::rbAddFixup(RBNode*  node)
 {
 	RBNode* uncle = NULL;
 
@@ -208,20 +166,6 @@ void RB::rbAddFixup(RBNode* node)
 	return;
 }
 
-/*
-Prototype:
-void RB::leftRotate(RBNode*)
-
-Description:
-The method performs a left rotate to fix the RB tree in the case that it is no longer valid.
-
-Example:
-RB r;
-r.leftRotate(x);
-
-Pre Condition: Tree is not a valid RB tree due to a node being added.
-Post Condition: A left rotate will be performed to try and make the tree valid again.
-*/
 void RB::leftRotate(RBNode* x)
 {
 	RBNode* y = x->rightChild;
@@ -256,20 +200,6 @@ void RB::leftRotate(RBNode* x)
 	x->parent = y;
 }
 
-/*
-Prototype:
-void RB::leftRotate(RBNode*)
-
-Description:
-The method performs a right rotate to fix the RB tree in the case that it is no longer valid.
-
-Example:
-RB r;
-r.rightRotate(x);
-
-Pre Condition: Tree is not a valid RB tree due to a node being added.
-Post Condition: A right rotate will be performed to try and make the tree valid again.
-*/
 void RB::rightRotate(RBNode * x)
 {
 
@@ -310,43 +240,15 @@ void RB::rightRotate(RBNode * x)
 	x->parent = y;
 }
 
-/*
-Prototype:
-void RB::findNode(int)
-
-Description:
-This method times the searching of the tree.
-
-Example:
-RB r;
-r.findNode(5);
-
-Pre Condition: Must have a valid RB tree and a valid node.
-Post Condition: Searches the tree and times it.
-*/
 void RB::findNode(int info2)
 {
 	clock_t begin = clock();
-	seachTree(root);
+	searchTree(root, info2);
 	clock_t end = clock();
 
 	searchTime = double(end - begin) / CLOCKS_PER_SEC;
 }
 
-/*
-Prototype:
-void RB::searchTree(RBNode*, int)
-
-Description:
-This method .earches the tree for a specific node;
-
-Example:
-RB r;
-r.searchTree(node, 5);
-
-Pre Condition: Must have a valid RB tree and a valid node.
-Post Condition: Searches the tree.
-*/
 void RB::searchTree(RBNode* node, int info3)
 {
 
@@ -366,23 +268,10 @@ void RB::searchTree(RBNode* node, int info3)
 
 }
 
-/*
-Prototype:
-struct dataHolder* RB::getData()
-
-Description:
-The method stores the time it takes to search the tree into the GetData function.
-
-Example:
-struct dataHolder* RB::getData();
-
-Pre Condition: Tree must have already been searched and have a search time stored.
-Post Condition: Stores the search time so it can be compared against other data structures.
-*/
-struct dataHolder* getData()
+dataHolder* RB::getData()
 {
 	if (searchTime == 99999999)
-		return;
+		return NULL;
 	else{
 		dataHolder* newData = new dataHolder;
 		newData->timeE = searchTime;

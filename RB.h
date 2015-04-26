@@ -23,7 +23,7 @@ struct RBNode{
 		rightChild = NULL;
 		parent = NULL;
 		isRed = true;
-			
+
 	}
 
 };
@@ -31,16 +31,16 @@ struct RBNode{
 class RB{
 
 public:
-	
+
 	RB();
 	void addNode(int info);
 	bool isValid();
 	void findNode(int info2);
-	struct dataHolder* getData();
-	virtual ~RB();
+	dataHolder* getData();
+	~RB();
 
-private: 
-		
+private:
+
 	void searchTree(RBNode*  node, int info3);
 	void DeleteAll(RBNode* node);
 	void rbAddFixup(RBNode* node);

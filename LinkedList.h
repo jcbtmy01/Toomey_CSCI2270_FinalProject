@@ -12,10 +12,10 @@ public:
 
     LinkedList();
     void addNode(int info);
-    struct dataHolder* getData();
+    dataHolder* getData();
     void traverse(int info2);
     void deleteAllNodes();
-    virtual ~LinkedList();
+    ~LinkedList();
 
 private:
 

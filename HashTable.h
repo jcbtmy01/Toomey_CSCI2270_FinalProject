@@ -9,6 +9,8 @@ struct hashNode{
         int key;
 		int data;
         int value;
+    hashNode* next;
+    hashNode* prev;
 };
 
 class HashTable
@@ -17,7 +19,7 @@ class HashTable
         HashTable();
         ~HashTable();
         void Insert(int key, int value);
-		struct dataHolder* getData();
+		dataHolder* getData();
         int Search(int key);
 		double searchTime;
     protected:

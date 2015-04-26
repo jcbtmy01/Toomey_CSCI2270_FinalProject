@@ -3,8 +3,8 @@
 #include "holderStruct.h"
 #include "RB.h"
 #include "BinaryTree.h"
-#include "LinkedList.h"
 #include "HashTable.h"
+#include "organizer.h"
 
 
 /*
@@ -21,7 +21,7 @@ Constructor:
 
 organizer::organizer()
 {
-	dataSearchTimes = new vector < dataholder* > ;
+	dataSearchTimes = new std::vector<dataHolder*>;
 
 	Rbtree = new RB;
 	linkednodes = new LinkedList;
@@ -46,8 +46,8 @@ Ex:
 void organizer::addAll(int info1)
 {
 
-	Rbtree->addNode(int info1);
-	linkednodes->addNode(int info1);
+	Rbtree->addNode(info1);
+	linkednodes->addNode(info1);
 	int keyvalue = info1 % 10;
 	newHash->Insert(keyvalue, info1);
 	binaryTree->addToTree(info1);
@@ -63,17 +63,17 @@ Ex:
 	organizer.callSearch(10);
 
 	would  search all data structures for number 10
-	
+
 
 */
 
 void organizer::callSearch(int info)
 {
 	Rbtree->findNode(info);
-	linkednodes->travers(info);
+	linkednodes->traverse(info);
 	int keyvalue = info % 10;
 	newHash->Search(keyvalue);
-	binaryTree->searchTree(info);
+	binaryTree->ft(info);
 }
 
 
@@ -84,10 +84,10 @@ void organizer::getSearches()
 	dataHolder* point2 = newHash->getData();
 	dataHolder* point3 = binaryTree->getData();
 
-	dataSearchTimes.push_back(point);
-	dataSearchTimes.push_back(point1);
-	dataSearchTimes.push_back(point2);
-	dataSearchTimes.push_back(point3);
+	dataSearchTimes->push_back(point);
+	dataSearchTimes->push_back(point1);
+	dataSearchTimes->push_back(point2);
+	dataSearchTimes->push_back(point3);
 
 }
 
@@ -101,16 +101,16 @@ void organizer::sort()
 {
 	dataHolder* swap;
 
-	for (int n = 0; n < dataSearchTimes.size(); n++)
+	for (int n = 0; n < dataSearchTimes->size(); n++)
 	{
-		for (int d = 0; d < dataSearchTimes.size() - n - 1; d++)
+		for (int d = 0; d < dataSearchTimes->size() - n - 1; d++)
 		{
-			
-			if (dataSearhTimes[d]->timeE < dataSearchTimes[d + 1]->timeE)
+
+			if (dataSearchTimes->at(d)->timeE < dataSearchTimes->at(d+1)->timeE)
 			{
-				swap = dataSearchTimes[d];
-				dataSearchTimes[d] = dataSearchTimes[d + 1];
-				dataSearchTimes[d + 1] = swap;
+				swap = dataSearchTimes->at(d);
+				dataSearchTimes->at(d) = dataSearchTimes->at(d+1);
+				dataSearchTimes->at(d+1) = swap;
 
 			}
 
@@ -119,7 +119,7 @@ void organizer::sort()
 }
 
 
-vector<dataHolder*>* organizer::getSorted()
+std::vector<dataHolder*>* organizer::getSorted()
 {
 	return dataSearchTimes;
 }

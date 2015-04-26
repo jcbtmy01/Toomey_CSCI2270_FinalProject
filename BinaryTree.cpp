@@ -3,26 +3,17 @@
 #include "holderStruct.h"
 #include "BinaryTree.h"
 
+
 BST::BST()
 {
     root = NULL;
     searchTime = 99999999;
 }
 
-/*
-Prototype:
-void BST::AddToTree(int)
-
-Description:
-The method adds a number into the Binary Tree
-
-Example:
-BST tree;
-tree.addToTree(5);
-
-Pre Condition: Input must be an integer and the tree must be valid.
-Post Condition: Integer added into the Tree and sorted correctly.
-*/
+BST::~BST()
+{
+    deleteTree();
+}
 
 void BST::addToTree(int info)
 {
@@ -66,44 +57,13 @@ void BST::addToTree(int info)
 
 }
 
-/*
-Prototype:
-void BST::deleteTree()
-
-Description:
-The method deletes the Binary Tree
-
-Example:
-BST tree;
-tree.deleteTree();
-
-Pre Condition: Must have a tree with at least one input in it.
-Post Condition: The tree will be deleted and the memory freed.
-*/
 void BST::deleteTree()
 {
-	clock_t begin = clock();
-    deleteAll(root);
-	clock_t end = clock();
 
-	searhTime = double(end - begin) / CLOCKS_PER_SEC;
+    deleteAll(root);
 
 }
 
-/*
-Prototype:
-void BST::searchNode(struct*, int)
-
-Description:
-The method searches the tree for the inputted integer.
-
-Example:
-BST tree;
-tree.searchNode(TreeNode* node, int 5);
-
-Pre Condition: Input must be an integer and have already been added to the tree.
-Post Condition: The function will search through the function until it finds the inputted integer and times how long it takes.
-*/
 void BST::searchNode(TreeNode* node, int info4)
 {
 
@@ -130,27 +90,16 @@ void BST::searchNode(TreeNode* node, int info4)
 
 }
 
-void BST::find(int info3)
+void BST::ft(int info3)
 {
+    clock_t begin = clock();
+	searchNode(root, info3);
+    clock_t end = clock();
 
-	searchNode(root, info3)
-
+    searchTime = double(end-begin)/CLOCKS_PER_SEC;
 }
 
-/*
-Prototype:
-struct dataHolder* BST::getData()
-
-Description:
-The method stores the time it takes to search the tree into the GetData function.
-
-Example:
-struct dataHolder* BST::getData();
-
-Pre Condition: Tree must have already been searched and have a search time stored.
-Post Condition: Stores the search time so it can be compared against other data structures.
-*/
-struct dataHolder* BST::getData()
+dataHolder* BST::getData()
 {
 	if (searchTime == 99999999)
 	{
@@ -167,7 +116,6 @@ struct dataHolder* BST::getData()
 
 }
 
-//Used in delete tree function.
 void BST::deleteAll(TreeNode* node)
 {
     if(node->leftChild != NULL)
