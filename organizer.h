@@ -4,7 +4,10 @@
 #include <iostream>
 #include <vector>
 #include "holderStruct.h"
-
+#include "RB.h"
+#include "LinkedList.h"
+#include "BinaryTree.h"
+#include "HashTable.h"
 
 class organizer
 {
@@ -16,7 +19,7 @@ public:
 	void callSearch(int info);
 	void getSearches();
 	void sort();
-	vector<dataHolder*>* getSorted();
+	std::vector<dataHolder*>* getSorted();
 	~organizer();
 
 private:
@@ -25,7 +28,7 @@ private:
 	LinkedList* linkednodes;
 	HashTable* newHash;
 	BST* binaryTree;
-	vector<dataHolder*>* dataSearchTimes;
+	std::vector<dataHolder*>* dataSearchTimes;
 
 
 
