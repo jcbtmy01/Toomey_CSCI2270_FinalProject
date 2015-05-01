@@ -9,8 +9,10 @@ OverView:
   The searches will be looking for a single plot of data by prompting the user for a piece of information. 
   
 Build and Run:
-  Since this is a console based application it would be easier to build and run using a provided make file rather than trying to   load into and IDE. It is recomomended that the contents be place in a folder. The program can be either compiled manually or 
-  using the make file where the executable will be name RunTime. 
+  Since this is a console based application it would be easier to build and run using:
+    g++ main.cpp organizer.cpp BinaryTree.cpp HashTable.cpp LinkedList.cpp RB.cpp -o RunTime
+    
+    and ./RunTime to run
   
 
 System Requirments:
